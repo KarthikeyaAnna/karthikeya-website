@@ -71,10 +71,11 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+    /* Updated keyframes ensure final opacity is 1 */
     @keyframes popIn {
       0% { opacity: 0; transform: scale(0.5); }
       80% { opacity: 1; transform: scale(1.05); }
-      100% { transform: scale(1); }
+      100% { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
@@ -92,12 +93,12 @@
     // Array of COM group members with names and image paths
     const members = [
       { name: "Shreyas", img: "shreyas.jpg" },
-      { name: "Tarandeep", img: "tarandeep.jpg" },
-      { name: "Sanchit", img: "sanchit.jpg" },
-      { name: "Sri", img: "sri.jpg" },
+      { name: "Tarandeep", img: "tarandeep.jpeg" },
+      { name: "Sanchit", img: "sanchit.jpeg" },
+      { name: "Sri", img: "sri.jpeg" },
       { name: "Shashank", img: "shashank.jpg" },
-      { name: "Sifat", img: "sifat.jpg" },
-      { name: "Mannat", img: "mannat.jpg" }
+      { name: "Sifat", img: "sifat.png" },
+      { name: "Mannat", img: "mannat.jpeg" }
     ];
 
     const btn = document.getElementById('comBtn');
@@ -121,14 +122,22 @@
         // Randomly select a member
         const randomMember = members[Math.floor(Math.random() * members.length)];
 
-        // Set image and name
+        // Set image source and name
         resultImage.src = randomMember.img;
         resultName.textContent = randomMember.name;
 
-        // Hide evaluating message and show result properly
+        // Force re-trigger of the popIn animation for the image and name
+        resultImage.style.animation = 'none';
+        resultName.style.animation = 'none';
+        void resultImage.offsetWidth; // Trigger reflow
+        void resultName.offsetWidth;
+        resultImage.style.animation = 'popIn 0.8s forwards';
+        resultName.style.animation = 'popIn 0.8s forwards';
+
+        // Hide evaluating message and display the result
         evaluatingDiv.style.display = 'none';
         resultDiv.style.display = 'block';
-        resultDiv.style.opacity = 1;  // Ensure result remains visible
+        resultDiv.style.opacity = 1;  // Ensure the result stays visible
 
         // Re-enable button after result is shown
         btn.disabled = false;
