@@ -92,12 +92,12 @@
     // Array of COM group members with names and image paths
     const members = [
       { name: "Shreyas", img: "shreyas.jpg" },
-      { name: "Tarandeep", img: "tarandeep.jpeg" },
-      { name: "Sanchit", img: "sanchit.jpeg" },
-      { name: "Sri", img: "sri.jpeg" },
+      { name: "Tarandeep", img: "tarandeep.jpg" },
+      { name: "Sanchit", img: "sanchit.jpg" },
+      { name: "Sri", img: "sri.jpg" },
       { name: "Shashank", img: "shashank.jpg" },
-      { name: "Sifat", img: "sifat.png" },
-      { name: "Mannat", img: "mannat.jpeg" }
+      { name: "Sifat", img: "sifat.jpg" },
+      { name: "Mannat", img: "mannat.jpg" }
     ];
 
     const btn = document.getElementById('comBtn');
@@ -107,17 +107,16 @@
     const resultName = document.getElementById('resultName');
 
     btn.addEventListener('click', () => {
-      // Hide previous result if any and show evaluating message
+      // Hide previous result and show evaluating message
       resultDiv.style.display = 'none';
       evaluatingDiv.style.display = 'block';
-      evaluatingDiv.style.opacity = 0;
       evaluatingDiv.textContent = "Evaluating...";
-      evaluatingDiv.style.animation = 'fadeInText 0.5s forwards';
-
+      evaluatingDiv.style.opacity = 1;
+      
       // Disable button to prevent multiple clicks
       btn.disabled = true;
 
-      // Wait for 2 seconds to simulate evaluation
+      // Wait for 2 seconds before showing result
       setTimeout(() => {
         // Randomly select a member
         const randomMember = members[Math.floor(Math.random() * members.length)];
@@ -126,10 +125,10 @@
         resultImage.src = randomMember.img;
         resultName.textContent = randomMember.name;
 
-        // Hide evaluating message and show result with animations
+        // Hide evaluating message and show result properly
         evaluatingDiv.style.display = 'none';
         resultDiv.style.display = 'block';
-        resultDiv.style.animation = 'popIn 0.8s forwards';
+        resultDiv.style.opacity = 1;  // Ensure result remains visible
 
         // Re-enable button after result is shown
         btn.disabled = false;
