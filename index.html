@@ -2,148 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Which Member of COM Group Are You?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Spline Viewer</title>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.69/build/spline-viewer.js"></script>
   <style>
-    /* Animated gradient background */
-    @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
-      background-size: 800% 800%;
-      animation: gradientAnimation 15s ease infinite;
+      background: #111;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
     }
-    #container {
-      text-align: center;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-    }
-    button {
-      background: linear-gradient(45deg, #ff6b6b, #f06595);
-      border: none;
-      padding: 20px 40px;
-      font-size: 20px;
-      border-radius: 50px;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-    button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-    }
-    #evaluating {
-      margin-top: 30px;
-      font-size: 24px;
-      opacity: 0;
-      animation: fadeInText 0.5s forwards;
-    }
-    #result {
-      margin-top: 40px;
-      display: none;
-      opacity: 0;
-    }
-    #result img {
-      max-width: 300px;
-      border-radius: 50%;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      animation: popIn 0.8s forwards;
-    }
-    #resultName {
-      margin-top: 20px;
-      font-size: 28px;
-      font-weight: bold;
-      animation: popIn 0.8s forwards;
-    }
-    @keyframes fadeInText {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    /* Updated keyframes ensure final opacity is 1 */
-    @keyframes popIn {
-      0% { opacity: 0; transform: scale(0.5); }
-      80% { opacity: 1; transform: scale(1.05); }
-      100% { opacity: 1; transform: scale(1); }
+    spline-viewer {
+      width: 100vw;
+      height: 100vh;
     }
   </style>
 </head>
 <body>
-  <div id="container">
-    <button id="comBtn">Which member of COM group are you?</button>
-    <div id="evaluating" style="display: none;">Evaluating...</div>
-    <div id="result">
-      <img id="resultImage" src="" alt="Member Photo">
-      <div id="resultName"></div>
-    </div>
-  </div>
-
-  <script>
-    // Array of COM group members with names and image paths
-    const members = [
-      { name: "Shreyas", img: "shreyas1.jpeg" },
-      { name: "Tarandeep", img: "tarandeep.jpeg" },
-      { name: "Sanchit", img: "sanchit.jpeg" },
-      { name: "Sri", img: "sri.png" },
-      { name: "Shashank", img: "shashank.jpg" },
-      { name: "Sifat", img: "sifat.png" },
-      { name: "Mannat", img: "mannat.jpeg"},
-      {name: "meherdeep" , img:"meherdeep.jpeg"}
-    ];
-
-    const btn = document.getElementById('comBtn');
-    const evaluatingDiv = document.getElementById('evaluating');
-    const resultDiv = document.getElementById('result');
-    const resultImage = document.getElementById('resultImage');
-    const resultName = document.getElementById('resultName');
-
-    btn.addEventListener('click', () => {
-      // Hide previous result and show evaluating message
-      resultDiv.style.display = 'none';
-      evaluatingDiv.style.display = 'block';
-      evaluatingDiv.textContent = "Evaluating...";
-      evaluatingDiv.style.opacity = 1;
-      
-      // Disable button to prevent multiple clicks
-      btn.disabled = true;
-
-      // Wait for 2 seconds before showing result
-      setTimeout(() => {
-        // Randomly select a member
-        const randomMember = members[Math.floor(Math.random() * members.length)];
-
-        // Set image source and name
-        resultImage.src = randomMember.img;
-        resultName.textContent = randomMember.name;
-
-        // Force re-trigger of the popIn animation for the image and name
-        resultImage.style.animation = 'none';
-        resultName.style.animation = 'none';
-        void resultImage.offsetWidth; // Trigger reflow
-        void resultName.offsetWidth;
-        resultImage.style.animation = 'popIn 0.8s forwards';
-        resultName.style.animation = 'popIn 0.8s forwards';
-
-        // Hide evaluating message and display the result
-        evaluatingDiv.style.display = 'none';
-        resultDiv.style.display = 'block';
-        resultDiv.style.opacity = 1;  // Ensure the result stays visible
-
-        // Re-enable button after result is shown
-        btn.disabled = false;
-      }, 2000);
-    });
-  </script>
+  <spline-viewer url="https://prod.spline.design/k1jqUG27G3mS2tHq/scene.splinecode"></spline-viewer>
 </body>
 </html>
