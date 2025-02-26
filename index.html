@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Coming Soon</title>
-  <!-- Make the page fill the browser viewport -->
+  <!-- Responsive design -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     /* Reset default margins & paddings */
@@ -13,37 +13,23 @@
       box-sizing: border-box;
     }
 
-    /* Body with full-screen cinematic background */
+    /* Body with full-screen cinematic background,
+       text placed at bottom using Flexbox */
     body {
       width: 100vw;
       height: 100vh;
-      background: url("image69.jpg") no-repeat center center;
+      background: url("image.jpg") no-repeat center center;
       background-size: cover;
       background-position: 50% 50%;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end; /* Align content at the bottom */
       overflow: hidden;
-      /* Add a slight overlay if desired */
-      /* position: relative; */
-      /* before pseudo-element for dark overlay:
-      */
-      /* 
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 1;
-      }
-      */
+      padding-bottom: 50px; /* Adds spacing from the bottom edge */
     }
 
     /* Cinematic text container */
     .coming-soon {
-      position: relative;
-      z-index: 2; /* if using overlay above, keep text above overlay */
       font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
       color: #fff;
       text-align: center;
@@ -103,7 +89,7 @@
   </style>
 </head>
 <body>
-  <!-- Cinematic “COMING SOON!!” with bomb explosion animation -->
+  <!-- Cinematic “COMING SOON!!” at bottom with bomb explosion animation -->
   <div class="coming-soon">
     COMING SOON!!
     <span class="bomb">💣</span>
