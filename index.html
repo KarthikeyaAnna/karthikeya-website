@@ -1,31 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sri Karthikeya</title>
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.69/build/spline-viewer.js"></script>
+  <meta charset="UTF-8" />
+  <title>Coming Soon</title>
+  <!-- Make the page fill the browser viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    /* Reset default margins & paddings */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
+    /* Body with full-screen cinematic background */
     body {
-      background: #111;
+      width: 100vw;
+      height: 100vh;
+      background: url("image.jpg") no-repeat center center;
+      background-size: cover;
+      background-position: 50% 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       overflow: hidden;
+      /* Add a slight overlay if desired */
+      /* position: relative; */
+      /* before pseudo-element for dark overlay:
+      */
+      /* 
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+      }
+      */
     }
-    spline-viewer {
-      width: 100vw;
-      height: 100vh;
+
+    /* Cinematic text container */
+    .coming-soon {
+      position: relative;
+      z-index: 2; /* if using overlay above, keep text above overlay */
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+      font-size: 5rem;
+      letter-spacing: 0.3rem;
+      animation: text-bomb 2.5s infinite;
+      cursor: default;
+    }
+
+    /* The bomb icon we’ll animate */
+    .bomb {
+      display: inline-block;
+      margin-left: 1rem;
+      animation: bomb-scale 2.5s infinite;
+      transform-origin: center;
+    }
+
+    /* “Explosion” effect on the text */
+    @keyframes text-bomb {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05) rotate(-1deg);
+        text-shadow: 3px 3px 15px #ff0000;
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+      }
+    }
+
+    /* Bomb growing & “exploding” effect */
+    @keyframes bomb-scale {
+      0% {
+        transform: scale(1) rotate(0deg);
+        color: #fff;
+      }
+      30% {
+        transform: scale(1.2) rotate(-10deg);
+      }
+      50% {
+        transform: scale(1.5) rotate(10deg);
+        color: #f00;
+      }
+      80% {
+        transform: scale(2) rotate(-10deg);
+        color: #ff4500;
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        color: #fff;
+      }
     }
   </style>
 </head>
 <body>
-  <spline-viewer url="https://prod.spline.design/k1jqUG27G3mS2tHq/scene.splinecode"></spline-viewer>
+  <!-- Cinematic “COMING SOON!!” with bomb explosion animation -->
+  <div class="coming-soon">
+    COMING SOON!!
+    <span class="bomb">💣</span>
+  </div>
 </body>
 </html>
